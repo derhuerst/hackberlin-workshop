@@ -35,9 +35,17 @@ npm install
 
 ## Getting Started
 
-**To get started working on your game, keep `npm start` running in your terminal. Open `index.html` in your browser.** You can now edit `index.js` and, after you reloaded in the Browser, see what it looks like.
+**To get started working on your game, keep `npm start` running in your terminal. Open `index.html` in your browser.** You can now edit `index.js` and, after reloading in the Browser, see what it looks like.
 
 - `index.js` contains all the game logic. It is the file I wrote in during the presentation.
 - `index.html` is the HTML page that the browser loads. It works like a frame for the game.
 - The command `npm run build` takes `index.js`, packages everything up and puts it into `bundle.js`, so that the browser can use it.
 - The command `npm start` is like `npm run build`, but it watches all files regenerates `bundle.js` whenever you edit something.
+
+## Things to Build
+
+- peer-to-peer chess game
+- Super-Mario-style side runner
+- [Bezier curve](https://en.wikipedia.org/wiki/Bézier_curve) editor
+- visualize the [average age in the states of Berlin](http://daten.berlin.de/datensaetze/einwohnerinnen-und-einwohner-den-ortsteilen-berlins-am-31122015)
+- visualize the [share of AFD electors in the states of Berlin](http://daten.berlin.de/datensaetze/wahlen-berlin-2016-abgeordnetenhaus-und-bezirksverordnetenversammlungen-endgültiges)

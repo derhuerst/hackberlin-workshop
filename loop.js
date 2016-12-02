@@ -1,13 +1,13 @@
 'use strict'
 
-const document = require('global/document')
+const raf = require('raf')
 
 const loop = function (cb) {
-	const self = function () {
-		window.requestAnimationFrame(self)
+	const tick = function () {
 		cb()
+		raf(tick)
 	}
-	self()
+	tick()
 }
 
 module.exports = loop

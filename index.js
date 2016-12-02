@@ -2,36 +2,23 @@
 
 const yo = require('yo-yo')
 const document = require('global/document')
-const randomColor = require('random-color')
-const loop = require('./loop')
 
 // -------------------------------
 
-const renderDot = function (dot, i, removeDot) {
-	const onClick = function () {
-		removeDot(i)
-	}
+const renderDot = function (dot) {
 	return yo `
 		<circle
 			cx="${dot.x}" cy="${dot.y}"
 			r="${dot.r}"
 			fill="${dot.color}"
-			onclick=${onClick}
 		/>
 	`
 }
 
-const render = function (width, height, dots, removeDot, addDot) {
-	const renderedDots = dots.map(function (dot, i) {
-		return renderDot(dot, i, removeDot)
-	})
+const render = function (width, height, dots) {
+	const renderedDots = dots.map(renderDot)
 	return yo `
 		<svg width="${width}" height="${height}">
-			<rect
-				width="${width}" height="${height}"
-				fill="transparent"
-				onclick=${addDot}
-			/>
 			${renderedDots}
 		</svg
 	`
@@ -42,29 +29,13 @@ const render = function (width, height, dots, removeDot, addDot) {
 // state
 const width = 400
 const height = 400
-let dots = []
-
-// actions
-const removeDot = function (i) {
-	dots = dots.filter((dot, j) => j !== i)
-}
-const addDot = function () {
-	dots = dots.concat({
-		x: Math.random() * width,
-		y: Math.random() * width,
-		r: 5 + Math.random() * 20,
-		color: randomColor().hexString()
-	})
-}
-
-for (let i = 0; i < 10; i++) addDot()
+let dots = [
+	{x: 40, y: 80, r: 10, color: 'red'},
+	{x: 200, y: 280, r: 20, color: 'blue'},
+	{x: 320, y: 120, r: 15, color: 'yellow'}
+]
 
 // -------------------------------
 
-const el = render(width, height, dots, removeDot, addDot)
+const el = render(width, height, dots)
 document.body.appendChild(el)
-
-const rerender = function () {
-	yo.update(el, render(width, height, dots, removeDot, addDot))
-}
-loop(rerender)

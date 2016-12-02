@@ -1,23 +1,32 @@
 {
-	"private":     true,
-	"name":        "hackberlin-workshop",
-	"description": "A workshop on building Frontend apps.",
-	"version":     "0.1.0",
-	"keywords":    ["hackathon", "workshop", "demo", "berlin"],
-	"author":      "Jannis R <mail@jannisr.de>",
-	"homepage":    "http://derhuerst.github.io/hackberlin-workshop/",
-	"repository":  "derhuerst/hackberlin-workshop",
-	"bugs":        "https://github.com/derhuerst/hackberlin-workshop/issues",
-	"license":     "ISC",
-	"engines":     {"node": ">=6"},
-	"devDependencies": {
-		"browserify": "^13.1.1",
-		"es2020": "^1.1.9",
-		"uglify-js": "^2.7.5"
-	},
-	"scripts": {
-		"bundle": "browserify -t es2020 index.js > bundle.js",
-		"minify": "cat bundle.js | uglifyjs -mc > bundle.min.js",
-		"build": "npm run bundle && npm run minify"
-	}
+  "private": true,
+  "name": "hackberlin-workshop",
+  "description": "A workshop on building Frontend apps.",
+  "version": "0.1.0",
+  "keywords": [
+    "hackathon",
+    "workshop",
+    "demo",
+    "berlin"
+  ],
+  "author": "Jannis R <mail@jannisr.de>",
+  "homepage": "http://derhuerst.github.io/hackberlin-workshop/",
+  "repository": "derhuerst/hackberlin-workshop",
+  "bugs": "https://github.com/derhuerst/hackberlin-workshop/issues",
+  "license": "ISC",
+  "engines": {
+    "node": ">=6"
+  },
+  "devDependencies": {
+    "browserify": "^13.1.1",
+    "es2020": "^1.1.9",
+    "uglify-js": "^2.7.5",
+    "watchify": "^3.7.0"
+  },
+  "scripts": {
+    "bundle": "browserify -t es2020 index.js > bundle.js",
+    "minify": "cat bundle.js | uglifyjs -mc > bundle.min.js",
+    "build": "npm run bundle && npm run minify",
+    "start": "watchify -t es2020 index.js -o bundle.js"
+  }
 }

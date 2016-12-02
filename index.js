@@ -7,8 +7,10 @@ const loop = require('./loop')
 
 // -------------------------------
 
-const renderDot = (dot, i, removeDot) => {
-	const onClick = () => removeDot(i)
+const renderDot = function (dot, i, removeDot) {
+	const onClick = function () {
+		removeDot(i)
+	}
 	return yo `
 		<circle
 			cx="${dot.x}" cy="${dot.y}"
@@ -19,7 +21,10 @@ const renderDot = (dot, i, removeDot) => {
 	`
 }
 
-const render = (width, height, dots, removeDot, addDot) => {
+const render = function (width, height, dots, removeDot, addDot) {
+	const renderedDots = dots.map(function (dot, i) {
+		return renderDot(dot, i, removeDot)
+	})
 	return yo `
 		<svg width="${width}" height="${height}">
 			<rect
@@ -27,22 +32,23 @@ const render = (width, height, dots, removeDot, addDot) => {
 				fill="transparent"
 				onclick=${addDot}
 			/>
-			${dots.map((dot, i) => renderDot(dot, i, removeDot))}
+			${renderedDots}
 		</svg
 	`
 }
 
 // -------------------------------
 
+// state
 const width = 400
 const height = 400
 let dots = []
 
-const removeDot = (i) => {
+// actions
+const removeDot = function (i) {
 	dots = dots.filter((dot, j) => j !== i)
 }
-
-const addDot = () => {
+const addDot = function () {
 	dots = dots.concat({
 		x: Math.random() * width,
 		y: Math.random() * width,
@@ -58,7 +64,7 @@ for (let i = 0; i < 10; i++) addDot()
 const el = render(width, height, dots, removeDot, addDot)
 document.body.appendChild(el)
 
-const rerender = () => {
+const rerender = function () {
 	yo.update(el, render(width, height, dots, removeDot, addDot))
 }
 loop(rerender)

@@ -2,8 +2,8 @@
 
 const document = require('global/document')
 
-const loop = (cb) => {
-	const self = () => {
+const loop = function (cb) {
+	const self = function () {
 		window.requestAnimationFrame(self)
 		cb()
 	}

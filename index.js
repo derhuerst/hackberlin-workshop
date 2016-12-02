@@ -2,6 +2,7 @@
 
 const yo = require('yo-yo')
 const document = require('global/document')
+const randomColor = require('random-color')
 
 // -------------------------------
 
@@ -21,17 +22,24 @@ const render = (width, height, dots) => {
 
 // -------------------------------
 
-const app = () => {
-	const width = 100
-	const height = 100
-	const dots = [
-		{x: 10, y: 20, r: 10, color: 'red'},
-		{x: 50, y: 70, r: 20, color: 'blue'},
-		{x: 80, y: 30, r: 15, color: 'yellow'}
-	]
+const width = 400
+const height = 400
+let dots = []
 
-	const el = render(width, height, dots)
-	document.body.appendChild(el)
+const addDot = () => {
+	dots = dots.concat({
+		x: Math.random() * width,
+		y: Math.random() * width,
+		r: 5 + Math.random() * 20,
+		color: randomColor().hexString()
+	})
+	rerender()
 }
 
-app()
+const el = render(width, height, dots)
+const rerender = () => {
+	yo.update(el, render(width, height, dots))
+}
+
+for (let i = 0; i < 10; i++) addDot()
+document.body.appendChild(el)

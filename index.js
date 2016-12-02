@@ -3,6 +3,7 @@
 const yo = require('yo-yo')
 const document = require('global/document')
 const randomColor = require('random-color')
+const loop = require('./loop')
 
 // -------------------------------
 
@@ -39,7 +40,6 @@ let dots = []
 
 const removeDot = (i) => {
 	dots = dots.filter((dot, j) => j !== i)
-	rerender()
 }
 
 const addDot = () => {
@@ -49,15 +49,16 @@ const addDot = () => {
 		r: 5 + Math.random() * 20,
 		color: randomColor().hexString()
 	})
-	rerender()
 }
+
+for (let i = 0; i < 10; i++) addDot()
 
 // -------------------------------
 
 const el = render(width, height, dots, removeDot, addDot)
+document.body.appendChild(el)
+
 const rerender = () => {
 	yo.update(el, render(width, height, dots, removeDot, addDot))
 }
-
-for (let i = 0; i < 10; i++) addDot()
-document.body.appendChild(el)
+loop(rerender)

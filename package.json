@@ -19,6 +19,8 @@
   },
   "devDependencies": {
     "browserify": "^13.1.1",
+    "browserify-reload": "^1.0.3",
+    "ecstatic": "^2.1.0",
     "es2020": "^1.1.9",
     "uglify-js": "^2.7.5",
     "watchify": "^3.7.0"
@@ -27,7 +29,9 @@
     "bundle": "browserify -t es2020 index.js > bundle.js",
     "minify": "cat bundle.js | uglifyjs -mc > bundle.min.js",
     "build": "npm run bundle && npm run minify",
-    "start": "watchify -t es2020 index.js -o bundle.js"
+    "start": "watchify -t es2020 index.js -o bundle.js",
+    "dev:build": "watchify -p browserify-reload -t es2020 index.js -o bundle.js",
+    "dev:serve": "ecstatic --port 8080"
   },
   "dependencies": {
     "global": "^4.3.1",

@@ -18,7 +18,7 @@
     "node": ">=6"
   },
   "devDependencies": {
-    "browserify": "^13.1.1",
+    "browserify": "^14.0.0",
     "browserify-reload": "^1.0.3",
     "ecstatic": "^2.1.0",
     "es2020": "^1.1.9",

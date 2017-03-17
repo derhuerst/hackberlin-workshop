@@ -1,11 +1,12 @@
 {
   "private": true,
   "name": "hackberlin-workshop",
-  "description": "A workshop on building Frontend apps.",
+  "description": "A workshop on building frontend apps.",
   "version": "0.1.0",
   "keywords": [
     "hackathon",
     "workshop",
+    "frontend",
     "demo",
     "berlin"
   ],
@@ -18,20 +19,16 @@
     "node": ">=6"
   },
   "devDependencies": {
+    "beefy": "^2.1.8",
     "browserify": "^14.0.0",
-    "browserify-reload": "^1.0.3",
-    "ecstatic": "^2.1.0",
     "es2020": "^1.1.9",
-    "uglify-js": "^2.7.5",
-    "watchify": "^3.7.0"
+    "uglify-js": "^2.7.5"
   },
   "scripts": {
     "bundle": "browserify -t es2020 index.js > bundle.js",
     "minify": "cat bundle.js | uglifyjs -mc > bundle.min.js",
     "build": "npm run bundle && npm run minify",
-    "start": "watchify -t es2020 index.js -o bundle.js",
-    "dev:build": "watchify -p browserify-reload -t es2020 index.js -o bundle.js",
-    "dev:serve": "ecstatic --port 8080"
+    "start": "beefy index.js:bundle.js 9966 --live -- -t es2020"
   },
   "dependencies": {
     "global": "^4.3.1",

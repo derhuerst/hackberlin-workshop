@@ -22,7 +22,7 @@
     "beefy": "^2.1.8",
     "browserify": "^14.0.0",
     "es2020": "^1.1.9",
-    "uglify-js": "^2.7.5"
+    "uglify-js": "^3.0.0"
   },
   "scripts": {
     "bundle": "browserify -t es2020 index.js > bundle.js",

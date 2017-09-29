@@ -21,16 +21,30 @@
   "devDependencies": {
     "beefy": "^2.1.8",
     "browserify": "^14.0.0",
-    "es2020": "^1.1.9",
     "uglify-js": "^3.0.0"
   },
+  "browserify": {
+    "transform": [
+      [
+        "babelify",
+        {
+          "presets": [
+            "env"
+          ],
+          "global": true
+        }
+      ]
+    ]
+  },
   "scripts": {
-    "bundle": "browserify -t es2020 index.js > bundle.js",
+    "bundle": "browserify index.js > bundle.js",
     "minify": "cat bundle.js | uglifyjs -mc > bundle.min.js",
     "build": "npm run bundle && npm run minify",
-    "start": "beefy index.js:bundle.js 9966 --live -- -t es2020"
+    "start": "beefy index.js:bundle.js 9966 --live"
   },
   "dependencies": {
+    "babel-preset-env": "^1.6.0",
+    "babelify": "^7.3.0",
     "global": "^4.3.1",
     "raf": "^3.3.0",
     "random-color": "^1.0.1",

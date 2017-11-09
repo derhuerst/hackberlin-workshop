@@ -26,24 +26,11 @@
     "browserify": "^14.0.0",
     "uglify-js": "^3.0.0"
   },
-  "browserify": {
-    "transform": [
-      [
-        "babelify",
-        {
-          "presets": [
-            "env"
-          ],
-          "global": true
-        }
-      ]
-    ]
-  },
   "scripts": {
-    "bundle": "browserify index.js > bundle.js",
+    "bundle": "browserify -g [babelify --presets env] index.js > bundle.js",
     "minify": "cat bundle.js | uglifyjs -mc > bundle.min.js",
     "build": "npm run bundle && npm run minify",
-    "start": "beefy index.js:bundle.js 9966 --live"
+    "start": "beefy index.js:bundle.js 9966 --live -- -g [babelify --presets env]"
   },
   "dependencies": {
     "global": "^4.3.1",

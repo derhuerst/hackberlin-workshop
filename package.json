@@ -24,7 +24,7 @@
     "babelify": "^8.0.0",
     "beefy": "^2.1.8",
     "browserify": "^16.0.0",
-    "uglify-js": "^3.0.0"
+    "uglify-js": "3.3.12"
   },
   "scripts": {
     "bundle": "browserify -g [babelify --presets env] index.js > bundle.js",
